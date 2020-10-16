@@ -1,30 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1>投稿一覧</h1>
 
-<h1>一覧表示</h1>
-
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
-        <span class="sr-only">Bootstrap</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Bootstrap
-      </a>
-    </div>
-    <div id="gnavi" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="">top</a></li>
-        <li><a href="">menu1</a></li>
-        <li><a href="">menu2</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<table>
+<div class="container">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Title</th>
@@ -33,21 +10,16 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-        <td><%= image_tag post.image.url %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= image_tag post.image.url%></td>
+        <td><%= link_to '詳細確認', post %></td>
+        <td><%= link_to '編集', edit_post_path(post) %></td>
+        <td><%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
