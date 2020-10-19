@@ -1,8 +1,14 @@
-<h1>Log in</h1>
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit "Log in" %>
-<% end %>
+<body class=facepage>
+  <div id="icon">
+    <%= link_to image_tag('topicon.png'), posts_path, class:"icon" %>
+  </div>
+  <div class="login">
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <%= f.email_field :email, placeholder:"メールアドレスを入力" %><br>
+      <%= f.password_field :password, placeholder:"パスワードを入力" %><br>
+      <%= f.submit "Log in", class:"button" %>
+    <% end %>
+  </div>
+</body>
+<!-- 本来のログイン画面に似せるように設計
+placeholderは要素を追加すれば表示可能 -->

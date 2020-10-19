@@ -1,3 +1,25 @@
-// Place all the styles related to the sessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.facepage{
+  background-color: #3366FF;
+}
+#icon{
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+#icon img{
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+.login{
+  text-align: center;
+
+}
+.login input{
+  width: 400px;
+  height: 50px;
+}
+.button{
+  background-color:#000066;
+  color: white;
+}

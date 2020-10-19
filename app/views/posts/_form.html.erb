@@ -11,21 +11,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title, "タイトル" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, placeholder:"タイトルを入力" %>
+    <%= form.text_area :content,placeholder:"内容を入力(140字以内)" %>
   </div>
-
-  <div class="field">
-    <%= form.label :content, "内容" %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
+  <div class="image">
     <%= form.label :image, "画像を投稿する場合はこちらから" %>
     <%= form.file_field :image %>
   </div>
-
   <div class="actions">
-    <%= form.submit "新規投稿" %>
+    <%= form.submit "投稿" %>
   </div>
 <% end %>
