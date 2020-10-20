@@ -26,15 +26,6 @@ class PostsController < ApplicationController
         render :new
       end
     end
-    # respond_to do |format| 次回のためのメモとして残しておきたい
-    #   if @post.save
-    #     format.html { redirect_to posts_path, notice: '投稿されました！' }
-    #     format.json { render :index, status: :created, location: @post }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @post.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def update
@@ -58,8 +49,13 @@ class PostsController < ApplicationController
   end
 
   def confirm
-    @post = current_user.posts.build(post_params)
-    render :new if @post.invalid?
+    @post = Post.new(post_params)
+    if current_user
+      @post.user_id = current_user.id
+      render :new if @post.invalid?
+    else
+      redirect_to new_session_path, notice: 'ログインしてください'
+    end
   end
 
   private
