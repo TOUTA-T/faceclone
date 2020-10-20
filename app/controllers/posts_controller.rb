@@ -16,16 +16,25 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    respond_to do |format|
+    @post = current_user.posts.build(post_params)
+    if params[:back]
+      render :new
+    else
       if @post.save
-        format.html { redirect_to posts_path, notice: '投稿されました！' }
-        format.json { render :index, status: :created, location: @post }
+        redirect_to posts_path, notice: "投稿されました！"
       else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        render :new
       end
     end
+    # respond_to do |format| 次回のためのメモとして残しておきたい
+    #   if @post.save
+    #     format.html { redirect_to posts_path, notice: '投稿されました！' }
+    #     format.json { render :index, status: :created, location: @post }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @post.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def update
@@ -46,6 +55,11 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: '投稿を削除しました' }
       format.json { head :no_content }
     end
+  end
+
+  def confirm
+    @post = current_user.posts.build(post_params)
+    render :new if @post.invalid?
   end
 
   private
